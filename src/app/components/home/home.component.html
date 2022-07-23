@@ -1,0 +1,33 @@
+<div>
+    <app-navbar (searchEvent)="getMovies($event)"></app-navbar>
+    <div class="border border-danger container pt-5">
+        <div class="row">
+            <div class="col-md-10">
+                <h2>Search results</h2>
+                <div class="row">
+                    <ng-container *ngIf="(movieResults | keyvalue)?.length; else empty">
+                        <div class="col-lg-2 mb-3 d-flex" style=" margin-bottom:10px;"
+                            *ngFor="let movie of movieResults">
+                            <div class="card" style="width: 12rem;">
+                                <img src='{{ "https://image.tmdb.org/t/p/w500/" + movie.poster_path }}'
+                                    class="card-img-top">
+                                <div class="card-body">
+                                    <h6 class="card-title"><a href="/movie/{{movie.id}}">{{movie.title}}</a></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <ng-template #empty>
+                    <h5>Loading...</h5>
+                </ng-template>
+            </div>
+            <div class="col-md-2">
+                <h2>Spotlights</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium sequi, asperiores beatae
+                    provident reiciendis facilis quae dolorum corrupti earum mollitia veniam labore iste enim hic
+                    similique ducimus unde id. Quibusdam.</p>
+            </div>
+        </div>
+    </div>
+</div>
