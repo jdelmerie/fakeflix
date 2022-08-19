@@ -1,3 +1,27 @@
-<p>movie works!</p>
-
-<!-- <h1>{{movie.title}}</h1> -->
+<div>
+    <app-navbar></app-navbar>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-4">
+                <img [src]="movie?.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + movie?.poster_path : noimage" style="width: 250px">
+            </div>
+            <div class="col-8">
+                <div class="card text-black">
+                    <div class="card-body">
+                        <h5 class="card-title">{{movie?.title}}</h5>
+                        <p class="card-text">Release date : {{movie?.release_date | date: "dd/M/yyyy"}}</p>
+                        <p class="card-text" *ngIf="(movie?.genres | keyvalue)?.length">
+                            <strong>Genre : </strong>
+                            <span *ngFor="let genre of movie?.genres"> {{genre.name}} </span>
+                        </p>
+                        <p class="card-text">{{movie?.overview}}</p>
+                        <p class="card-text"> <strong>Popularity : </strong> {{movie?.popularity}}</p>
+                        <p class="card-text" *ngIf="movie?.adult"> <strong>Adult</strong></p>
+                        <a href="#" class="btn btn-warning btn-sm">Fav</a>&nbsp;
+                        <a href="#" class="btn btn-primary btn-sm">Watchlist</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from 'src/app/model/movie';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -11,8 +12,9 @@ export class HomeComponent implements OnInit {
   upcomings: Movie[] | undefined;
   movieResults: Movie[] | undefined;
   error = null;
+  noimage: string = '/assets/img/noimage.png'
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.getUpComings();
@@ -20,11 +22,10 @@ export class HomeComponent implements OnInit {
 
   getUpComings() {
     this.api.getUpComings().subscribe({
-      next: (data) => (this.upcomings = data),
+      next: (data) => (this.upcomings = data, console.log(this.upcomings)),
       error: (err) => (this.error = err.message),
       complete: () => (this.error = null),
     });
-    console.log(this.upcomings);
   }
 
   getMovies(value: string) {
@@ -33,5 +34,10 @@ export class HomeComponent implements OnInit {
       error: (err) => (this.error = err.message),
       complete: () => (this.error = null),
     });
+  }
+
+
+  goToMovie(id: number) {
+    this.router.navigateByUrl('movie/' + id);
   }
 }
