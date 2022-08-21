@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Movie } from 'src/app/model/movie';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -9,11 +8,11 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./movie.component.css'],
 })
 export class MovieComponent implements OnInit {
-  movie: Movie | undefined;
+  movie: any;
   error = null;
   noimage: string = '/assets/img/noimage.png'
-  
-  constructor(private route: ActivatedRoute, private api: ApiService) {}
+
+  constructor(private route: ActivatedRoute, private api: ApiService, private router:Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -22,6 +21,11 @@ export class MovieComponent implements OnInit {
         this.getMovie(id);
       }
     });
+
+    if (this.isSessionIdExisting()) {
+      console.log("auth ok")
+    }
+
   }
 
   getMovie(id: string) {
@@ -30,6 +34,41 @@ export class MovieComponent implements OnInit {
       error: (err) => (this.error = err.message),
       complete: () => (this.error = null),
     });
+  }
+
+  fav() {
+
+    console.log(this.isSessionIdExisting())
+
+
+  }
+
+
+  // sendRequestToken(token:string) {
+  //   this.api.authenticationSession(token).subscribe({
+  //     next: (data) => (console.log(data)),
+  //     error: (err) => (this.error = err.message),
+  //     complete: () => (this.error = null),
+  //   });
+  // }
+
+
+
+  watchlist() {
+    // this.api.test().subscribe({
+    //   next: (data) => (console.log(data)),
+    //   error: (err) => (this.error = err.message),
+    //   complete: () => (this.error = null),
+    // });
+  }
+
+  isSessionIdExisting(): boolean {
+    // if (this.api.getSessionId() != null) {
+    //   return true;
+    // }
+    // return false;
+
+    return this.api.getSessionId() != null ? true : false;
   }
 
 }

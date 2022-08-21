@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Movie } from 'src/app/model/movie';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -9,8 +8,8 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  upcomings: Movie[] | undefined;
-  movieResults: Movie[] | undefined;
+  upcomings: any[] | undefined;
+  movieResults: any[] | undefined;
   error = null;
   noimage: string = '/assets/img/noimage.png'
 
@@ -18,6 +17,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUpComings();
+    
   }
 
   getUpComings() {

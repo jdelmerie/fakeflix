@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Form, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -9,9 +10,11 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class NavbarComponent implements OnInit {
   searchForm: FormGroup;
+  logged: boolean = false;
+
   @Output() searchEvent = new EventEmitter<string>();
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService) {
+  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router) {
     this.searchForm = this.formBuilder.group({
       searchKey: '',
     });
@@ -19,6 +22,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.onChange();
+    this.logged = this.api.getSessionId() != null ? true : false;
   }
 
   onChange(): void {
@@ -29,5 +33,16 @@ export class NavbarComponent implements OnInit {
 
   onSearch(form: FormGroup) {
     this.onChange();
+  }
+
+
+  logout() {
+    this.api.logout(this.api.getSessionId() as string).subscribe({
+      complete: () => (
+        this.api.clearSessionStorage(),
+        this.router.navigateByUrl("/home"),
+        window.location.reload()
+      ),
+    });
   }
 }

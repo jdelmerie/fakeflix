@@ -8,9 +8,10 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieComponent } from './components/movie/movie.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, MovieComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, MovieComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

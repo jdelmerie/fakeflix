@@ -17,8 +17,8 @@
                         <p class="card-text">{{movie?.overview}}</p>
                         <p class="card-text"> <strong>Popularity : </strong> {{movie?.popularity}}</p>
                         <p class="card-text" *ngIf="movie?.adult"> <strong>Adult</strong></p>
-                        <a href="#" class="btn btn-warning btn-sm">Fav</a>&nbsp;
-                        <a href="#" class="btn btn-primary btn-sm">Watchlist</a>
+                        <a (click)="fav()" class="btn btn-warning btn-sm">Fav</a>&nbsp;
+                        <a (click)="watchlist()" class="btn btn-primary btn-sm">Watchlist</a>
                     </div>
                 </div>
             </div>
