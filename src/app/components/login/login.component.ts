@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   error = null;
 
   constructor(private formBuilder: FormBuilder, private api: ApiService,
-    private router: Router) {
+    private router: Router, private route: ActivatedRoute) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   onSubmit(form: FormGroup) {
@@ -30,8 +31,6 @@ export class LoginComponent implements OnInit {
       // 1. Get a request token by /authentication/token/new. This will give a request token.
       this.api.authenticationStep1().subscribe({
         next: (data) => (
-          console.log("authenticationStep1 ok"),
-          console.log(data),
           // 2. Validate the username and password for your account by making POST call /authentication/token/validate_with_login with username, password, and request token
           this.authenticationStep2(form.value.username, form.value.password, data.request_token),
 
@@ -39,8 +38,6 @@ export class LoginComponent implements OnInit {
           this.authenticationStep3(data.request_token)
         ),
       });
-
-
     }
   }
 

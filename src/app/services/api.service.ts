@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
 
   private SESSION_ID = 'sessionID'
+  private ACCOUNT_ID = 'accountID'
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +25,7 @@ export class ApiService {
     return this.http.get<any>(environment.host + 'search/movie?api_key=' + environment.apiKey + '&query=' + search);
   }
 
-  public getMovieById(id: string) {
+  public getMovieById(id: number) {
     return this.http.get<any>(environment.host + 'movie/' + id + '?api_key=' + environment.apiKey);
   }
 
@@ -51,8 +52,30 @@ export class ApiService {
 
   public logout(session_id: string) {
     return this.http.delete<any>(environment.host + 'authentication/session?api_key=' + environment.apiKey, {
-      body: {session_id}
+      body: { session_id }
     });
+  }
+
+  /**********************************************************************
+   * 
+   * ACCOUNT / FAV
+   * 
+   *********************************************************************/
+
+  public getAccount() {
+    return this.http.get<any>(environment.host + 'account?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId());
+  }
+
+  public fav(media_id: number) {
+    return this.http.post<any>(environment.host + 'account/' + this.getAccountId() + '/favorite?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId(), {
+      "media_type": "movie",
+      "media_id": media_id,
+      "favorite": true
+    });
+  }
+
+  public getFavs() {
+    return this.http.get<any>(environment.host + 'account/' + this.getAccountId() + '/favorite/movies?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId());
   }
 
   /**********************************************************************
@@ -67,6 +90,15 @@ export class ApiService {
 
   public getSessionId(): string | null {
     return window.sessionStorage.getItem(this.SESSION_ID);
+  }
+
+  public saveAccountId(id: string): void {
+    window.sessionStorage.removeItem(this.ACCOUNT_ID);
+    window.sessionStorage.setItem(this.ACCOUNT_ID, id);
+  }
+
+  public getAccountId(): string | null {
+    return window.sessionStorage.getItem(this.ACCOUNT_ID);
   }
 
   clearSessionStorage(): void {

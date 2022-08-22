@@ -10,49 +10,38 @@ import { ApiService } from 'src/app/services/api.service';
 export class MovieComponent implements OnInit {
   movie: any;
   error = null;
-  noimage: string = '/assets/img/noimage.png'
+  noimage: string = '/assets/img/noimage.png';
+  movieId: number = 0;
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private router:Router) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      if (id) {
-        this.getMovie(id);
-      }
-    });
-
-    if (this.isSessionIdExisting()) {
-      console.log("auth ok")
+    this.movieId = this.route.snapshot.params['id'];
+    if (this.movieId > 0) {
+      this.getMovie(this.movieId);
     }
-
   }
 
-  getMovie(id: string) {
+  getMovie(id: number) {
     this.api.getMovieById(id).subscribe({
-      next: (data) => (console.log(data), this.movie = data),
+      next: (data) => (this.movie = data),
       error: (err) => (this.error = err.message),
       complete: () => (this.error = null),
     });
   }
 
   fav() {
-
-    console.log(this.isSessionIdExisting())
-
-
+    if (!this.isSessionIdExisting()) {
+      this.router.navigateByUrl("/login")
+    } else {
+      this.getAccountId();
+      this.api.fav(this.movieId).subscribe({
+        next: (data) => (console.log("ok")),
+        error: (err) => (this.error = err.message),
+        complete: () => (this.error = null),
+      });
+    }
   }
-
-
-  // sendRequestToken(token:string) {
-  //   this.api.authenticationSession(token).subscribe({
-  //     next: (data) => (console.log(data)),
-  //     error: (err) => (this.error = err.message),
-  //     complete: () => (this.error = null),
-  //   });
-  // }
-
-
 
   watchlist() {
     // this.api.test().subscribe({
@@ -62,12 +51,15 @@ export class MovieComponent implements OnInit {
     // });
   }
 
-  isSessionIdExisting(): boolean {
-    // if (this.api.getSessionId() != null) {
-    //   return true;
-    // }
-    // return false;
+  getAccountId() {
+    this.api.getAccount().subscribe({
+      next: (data) => (this.api.saveAccountId(data.id as string)),
+      error: (err) => (this.error = err.message),
+      complete: () => (this.error = null),
+    });
+  }
 
+  isSessionIdExisting(): boolean {
     return this.api.getSessionId() != null ? true : false;
   }
 
