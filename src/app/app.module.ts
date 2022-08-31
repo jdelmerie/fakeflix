@@ -10,9 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieComponent } from './components/movie/movie.component';
 import { LoginComponent } from './components/login/login.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { WatchlistComponent } from './components/watchlist/watchlist.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, MovieComponent, LoginComponent, FavoritesComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, MovieComponent, LoginComponent, FavoritesComponent, WatchlistComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

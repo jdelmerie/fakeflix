@@ -40,11 +40,11 @@ export class MovieComponent implements OnInit {
   }
 
   watchlist() {
-    // this.api.test().subscribe({
-    //   next: (data) => (console.log(data)),
-    //   error: (err) => (this.error = err.message),
-    //   complete: () => (this.error = null),
-    // });
+    this.api.wl(this.movieId).subscribe({
+      next: (data) => (console.log(data), alert("Movie added to your watchlist")),
+      error: (err) => (this.error = err.message),
+      complete: () => (this.router.navigateByUrl("/watchlist")),
+    });
   }
 
   getAccountId() {

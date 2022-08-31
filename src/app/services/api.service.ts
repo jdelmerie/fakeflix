@@ -74,6 +74,18 @@ export class ApiService {
     return this.http.get<any>(environment.host + 'account/' + this.getAccountId() + '/favorite/movies?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId());
   }
 
+  public getWL() {
+    return this.http.get<any>(environment.host + 'account/' + this.getAccountId() + '/watchlist/movies?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId());
+  }
+
+  public wl(media_id: number) {
+    return this.http.post<any>(environment.host + 'account/' + this.getAccountId() + '/watchlist?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId(), {
+      "media_type": "movie",
+      "media_id": media_id,
+      "watchlist": true
+    });
+  }
+
   /**********************************************************************
    * 
    * LOCAL STORAGE
