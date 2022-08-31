@@ -18,16 +18,12 @@ export class MovieComponent implements OnInit {
   ngOnInit(): void {
     this.movieId = this.route.snapshot.params['id'];
     if (this.movieId > 0) {
-      this.getMovie(this.movieId);
+      this.api.getMovieById(this.movieId).subscribe({
+        next: (data) => (this.movie = data, console.log(data)),
+        error: (err) => (this.error = err.message),
+        complete: () => (this.error = null),
+      });
     }
-  }
-
-  getMovie(id: number) {
-    this.api.getMovieById(id).subscribe({
-      next: (data) => (this.movie = data),
-      error: (err) => (this.error = err.message),
-      complete: () => (this.error = null),
-    });
   }
 
   fav() {
@@ -36,9 +32,9 @@ export class MovieComponent implements OnInit {
     } else {
       this.getAccountId();
       this.api.fav(this.movieId).subscribe({
-        next: (data) => (console.log("ok")),
+        next: (data) => (console.log(data), alert("Movie added to favorites")),
         error: (err) => (this.error = err.message),
-        complete: () => (this.error = null),
+        complete: () => (this.router.navigateByUrl("/favorites")),
       });
     }
   }

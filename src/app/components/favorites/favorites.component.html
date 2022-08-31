@@ -1,1 +1,24 @@
-<p>favorites works!</p>
+<div>
+    <app-navbar></app-navbar>
+    <div class="container pt-5 ">
+        <div class="row">
+            <ng-container *ngIf="(favs | keyvalue)?.length; else empty">
+                <h2>Your favorites</h2>
+                <div class="col-lg-2 mb-3 d-flex" style=" margin-bottom:10px;" *ngFor="let movie of favs">
+                    <div class="card" style="width: 20rem;">
+                        <a (click)="goToMovie(movie.id)">
+                            <img [src]="movie.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + movie.poster_path : noimage"
+                                class="card-img-top">
+                            <div class="card-body">
+                                <h6 class="card-title text-black">{{movie.title}}</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <ng-template #empty>
+            <h5>Vous n'avez pas de favoris</h5>
+        </ng-template>
+    </div>
+</div>

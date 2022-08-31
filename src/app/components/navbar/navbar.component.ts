@@ -35,7 +35,6 @@ export class NavbarComponent implements OnInit {
     this.onChange();
   }
 
-
   logout() {
     this.api.logout(this.api.getSessionId() as string).subscribe({
       complete: () => (

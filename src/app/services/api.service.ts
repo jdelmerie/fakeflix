@@ -7,9 +7,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ApiService {
 
-  private SESSION_ID = 'sessionID'
-  private ACCOUNT_ID = 'accountID'
-
   constructor(private http: HttpClient) { }
 
   /**********************************************************************
@@ -31,7 +28,7 @@ export class ApiService {
 
   /**********************************************************************
    * 
-   * AUTHENTIFICATION
+   * AUTHENTIFICATION / LOGOUT
    * 
    *********************************************************************/
   public authenticationStep1() {
@@ -61,7 +58,6 @@ export class ApiService {
    * ACCOUNT / FAV
    * 
    *********************************************************************/
-
   public getAccount() {
     return this.http.get<any>(environment.host + 'account?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId());
   }
@@ -83,22 +79,23 @@ export class ApiService {
    * LOCAL STORAGE
    * 
    *********************************************************************/
+
   public saveSessionId(token: string): void {
-    window.sessionStorage.removeItem(this.SESSION_ID);
-    window.sessionStorage.setItem(this.SESSION_ID, token);
+    window.sessionStorage.removeItem('sessionID');
+    window.sessionStorage.setItem('sessionID', token);
   }
 
   public getSessionId(): string | null {
-    return window.sessionStorage.getItem(this.SESSION_ID);
+    return window.sessionStorage.getItem('sessionID');
   }
 
   public saveAccountId(id: string): void {
-    window.sessionStorage.removeItem(this.ACCOUNT_ID);
-    window.sessionStorage.setItem(this.ACCOUNT_ID, id);
+    window.sessionStorage.removeItem('accountID');
+    window.sessionStorage.setItem('accountID', id);
   }
 
   public getAccountId(): string | null {
-    return window.sessionStorage.getItem(this.ACCOUNT_ID);
+    return window.sessionStorage.getItem('accountID');
   }
 
   clearSessionStorage(): void {

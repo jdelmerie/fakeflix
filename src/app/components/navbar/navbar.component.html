@@ -15,15 +15,12 @@
                     <a class="nav-link" *ngIf="!logged" routerLink="/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" *ngIf="logged" (click)="logout()" >Logout</a>
+                    <a class="nav-link" *ngIf="logged" (click)="logout()">Logout</a>
                 </li>
             </ul>
             <form class="d-flex" [formGroup]="searchForm" (ngSubmit)="onSearch(searchForm)">
                 <input type="search" formControlName="searchKey" name="search" class="form-control me-2"
                     placeholder="Search" aria-label="Search">
-                <button type="submit" class="btn btn-outline-light btn-sm">
-                    <i class="fa fa-search"></i>
-                </button>
             </form>
         </div>
     </div>
