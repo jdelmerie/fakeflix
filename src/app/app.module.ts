@@ -9,11 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieComponent } from './components/movie/movie.component';
 import { LoginComponent } from './components/login/login.component';
-import { FavoritesComponent } from './components/favorites/favorites.component';
-import { WatchlistComponent } from './components/watchlist/watchlist.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, MovieComponent, LoginComponent, FavoritesComponent, WatchlistComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, MovieComponent, LoginComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
