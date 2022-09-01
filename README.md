@@ -13,3 +13,15 @@
 ### Bonus
 * It's possible to add a movie to your favoriste list or watchlist but authentification is needed
 
+
+**Search results**
+
+![alt text](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/search.png?raw=true)
+
+**Movie page**
+
+![alt text](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/moviePage.png?raw=true)
+
+**Watchlist**
+
+![alt text](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/watchlist.png?raw=true)
