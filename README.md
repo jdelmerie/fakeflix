@@ -2,7 +2,7 @@
 
 ### Description
 
-* This is a project using the DBMovie API
+* This is a project using The movie DB API
 * On the homepage, users can view somes movies
 * Then it's possible to search for any movie using the search bar
 * Click on the poster to get more information about a movie 
@@ -16,7 +16,7 @@
 
 **Search results**
 
-![Search results](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/search.png?raw=true)
+![Search results](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/search.png)
 
 **Movie page**
 
