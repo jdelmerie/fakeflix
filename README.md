@@ -8,7 +8,7 @@
 * Click on the poster to get more information about a movie 
 
 ## Demo 
- <a href="http://fakeflix.delmerie.fr/home">Click to get a demo</a>
+ <a href="http://fakeflix.delmerie.fr/home" target="_blank">Click to get a demo</a>
 
 ## Bonus
 * It's possible to add a movie to your favoriste list or watchlist but authentification is needed
