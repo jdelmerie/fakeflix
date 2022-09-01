@@ -20,7 +20,7 @@
 
 **Movie page**
 
-![Movie page](https://raw.githubusercontent.com/jdelmerie/fakeflix/tree/main/src/assets/img/moviePage.png)
+![Movie page](https://raw.githubusercontent.com/jdelmerie/fakeflix/main/src/assets/img/moviePage.png)
 
 **Watchlist**
 
