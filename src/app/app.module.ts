@@ -24,3 +24,4 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
