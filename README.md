@@ -16,12 +16,12 @@
 
 **Search results**
 
-![alt text](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/search.png?raw=true)
+![Search results](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/search.png?raw=true)
 
 **Movie page**
 
-![alt text](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/moviePage.png?raw=true)
+![Movie page](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/moviePage.png?raw=true)
 
 **Watchlist**
 
-![alt text](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/watchlist.png?raw=true)
+![Watchlist](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/watchlist.png?raw=true)
