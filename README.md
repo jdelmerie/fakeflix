@@ -16,7 +16,7 @@
 
 **Search results**
 
-![Search results](https://github.com/jdelmerie/fakeflix/tree/main/src/assets/img/search.png)
+![Search results](https://raw.githubusercontent.com/jdelmerie/fakeflix/main/src/assets/img/search.png)
 
 **Movie page**
 
