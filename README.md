@@ -24,4 +24,4 @@
 
 **Watchlist**
 
-![Watchlist](https://raw.githubusercontent.com/jdelmerie/fakeflix/tree/main/src/assets/img/watchlist.png)
+![Watchlist](https://raw.githubusercontent.com/jdelmerie/fakeflix/main/src/assets/img/watchlist.png)
