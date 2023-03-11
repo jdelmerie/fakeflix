@@ -18,7 +18,9 @@
                         <p class="card-text"> <strong>Popularity : </strong> {{movie?.popularity}}</p>
                         <p class="card-text" *ngIf="movie?.adult"> <strong>Adult</strong></p>
                         <a (click)="fav()" class="btn btn-warning btn-sm">Fav</a>&nbsp;
-                        <a (click)="watchlist()" class="btn btn-primary btn-sm">Watchlist</a>
+                        <a (click)="watchlist()" class="btn btn-primary btn-sm">Watchlist</a>&nbsp;
+                        <a (click)="deleteFav(movie.id)" *ngIf="disabledFav" class="btn btn-danger btn-sm">Delete from fav</a>&nbsp;
+                        <a (click)="deleteWL(movie.id)" *ngIf="disabledWL" class="btn btn-danger btn-sm">Delete from WL</a>&nbsp;
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SeriesComponent } from './components/series/series.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: 'watchlist', component: HomeComponent, data: { link: 'watchlist' } }
     ],
   },
+  { path: 'series', component: SeriesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'movie/:id', component: MovieComponent },
   { path: '404', component: NotFoundComponent },

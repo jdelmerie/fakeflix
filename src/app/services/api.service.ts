@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   /**********************************************************************
    * 
    * DB MOVIES REQUEST
    * 
    *********************************************************************/
-  public getUpComings() {
+  public getUpComings(): Observable<any> {
     return this.http.get<any>(environment.host + 'movie/upcoming?' + 'api_key=' + environment.apiKey);
   }
 
@@ -53,6 +55,14 @@ export class ApiService {
     });
   }
 
+  public isSessionIdExisting(): boolean {
+    if (this.getSessionId() === null) {
+      this.router.navigateByUrl("/login")
+      return false;
+    }
+    return true;
+  }
+
   /**********************************************************************
    * 
    * ACCOUNT / FAV
@@ -70,6 +80,14 @@ export class ApiService {
     });
   }
 
+  public unfav(media_id: number) {
+    return this.http.post<any>(environment.host + 'account/' + this.getAccountId() + '/favorite?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId(), {
+      "media_type": "movie",
+      "media_id": media_id,
+      "favorite": false
+    });
+  }
+
   public getFavs() {
     return this.http.get<any>(environment.host + 'account/' + this.getAccountId() + '/favorite/movies?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId());
   }
@@ -83,6 +101,14 @@ export class ApiService {
       "media_type": "movie",
       "media_id": media_id,
       "watchlist": true
+    });
+  }
+
+  public unwl(media_id: number) {
+    return this.http.post<any>(environment.host + 'account/' + this.getAccountId() + '/watchlist?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId(), {
+      "media_type": "movie",
+      "media_id": media_id,
+      "watchlist": false
     });
   }
 

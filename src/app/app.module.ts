@@ -10,15 +10,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieComponent } from './components/movie/movie.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SeriesComponent } from './components/series/series.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, MovieComponent, LoginComponent, NotFoundComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, MovieComponent, LoginComponent, NotFoundComponent, SeriesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

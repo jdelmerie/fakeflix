@@ -3,3 +3,7 @@
     height: 18vw;
     object-fit: cover;
 }
+
+.actived {
+    color: red;
+}

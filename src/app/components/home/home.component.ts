@@ -47,24 +47,20 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  getFavs() {
-    if (!this.isSessionIdExisting()) {
-      this.router.navigateByUrl("/login")
-    } else {
+  private getFavs() {
+    if (this.api.isSessionIdExisting()) {
       this.api.getFavs().subscribe({
-        next: (data) => (console.log(data), this.movies = data.results, this.title = "Your favorites"),
+        next: (data) => (this.movies = data.results, this.title = "Your favorites"),
         error: (err) => (this.error = err.message),
         complete: () => (this.error = null),
       });
     }
   }
 
-  getWL() {
-    if (!this.isSessionIdExisting()) {
-      this.router.navigateByUrl("/login")
-    } else {
+  private getWL() {
+    if (this.api.isSessionIdExisting()) {
       this.api.getWL().subscribe({
-        next: (data) => (console.log(data), this.movies = data.results, this.title = "Your watchlist"),
+        next: (data) => (this.movies = data.results, this.title = "Your watchlist"),
         error: (err) => (this.error = err.message),
         complete: () => (this.error = null),
       });
@@ -73,9 +69,5 @@ export class HomeComponent implements OnInit {
 
   goToMovie(id: number) {
     this.router.navigateByUrl('movie/' + id);
-  }
-
-  isSessionIdExisting(): boolean {
-    return this.api.getSessionId() != null ? true : false;
   }
 }
