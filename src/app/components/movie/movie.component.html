@@ -3,7 +3,8 @@
     <div class="container pt-5">
         <div class="row">
             <div class="col-4">
-                <img [src]="movie?.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + movie?.poster_path : noimage" style="width: 250px">
+                <img [src]="movie?.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + movie?.poster_path : noimage"
+                    style="width: 250px">
             </div>
             <div class="col-8">
                 <div class="card text-black">
@@ -19,8 +20,10 @@
                         <p class="card-text" *ngIf="movie?.adult"> <strong>Adult</strong></p>
                         <a (click)="fav()" class="btn btn-warning btn-sm">Fav</a>&nbsp;
                         <a (click)="watchlist()" class="btn btn-primary btn-sm">Watchlist</a>&nbsp;
-                        <a (click)="deleteFav(movie.id)" *ngIf="disabledFav" class="btn btn-danger btn-sm">Delete from fav</a>&nbsp;
-                        <a (click)="deleteWL(movie.id)" *ngIf="disabledWL" class="btn btn-danger btn-sm">Delete from WL</a>&nbsp;
+                        <a (click)="deleteFav(movie.id)" *ngIf="disabledFav" class="btn btn-danger btn-sm">Delete from
+                            fav</a>&nbsp;
+                        <a (click)="deleteWL(movie.id)" *ngIf="disabledWL" class="btn btn-danger btn-sm">Delete from
+                            WL</a>&nbsp;
                     </div>
                 </div>
             </div>
