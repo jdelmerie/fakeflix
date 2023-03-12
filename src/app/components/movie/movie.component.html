@@ -10,7 +10,7 @@
                 <div class="card text-black">
                     <div class="card-body">
                         <h5 class="card-title">{{movie?.title}}</h5>
-                        <p class="card-text">Release date : {{movie?.release_date | date: "dd/M/yyyy"}}</p>
+                        <p class="card-text">Release date : {{movie?.release_date | date: "dd/MM/yyyy"}}</p>
                         <p class="card-text" *ngIf="(movie?.genres | keyvalue)?.length">
                             <strong>Genre : </strong>
                             <span *ngFor="let genre of movie?.genres"> {{genre.name}} </span>

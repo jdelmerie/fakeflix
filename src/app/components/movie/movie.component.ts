@@ -28,12 +28,12 @@ export class MovieComponent implements OnInit, OnDestroy {
 
     this.movieId = this.route.snapshot.params['id'];
     if (this.movieId > 0) {
-      this.api.getFavs().subscribe(data => {
+      this.api.getFavs(1).subscribe(data => {
         if (this.checkFavOrWL(data.results, this.movieId)) {
           this.disabledFav = true;
         }
       });
-      this.api.getWL().subscribe(data => {
+      this.api.getWL(1).subscribe(data => {
         if (this.checkFavOrWL(data.results, this.movieId)) {
           this.disabledWL = true;
         }
@@ -47,11 +47,11 @@ export class MovieComponent implements OnInit, OnDestroy {
   }
 
   fav(listName: string = "favorites") {
-    this.action(this.api.getFavs(), listName, this.api.fav(this.movieId), this.alertSuccess(this.alertAdded + listName));
+    this.action(this.api.getFavs(1), listName, this.api.fav(this.movieId), this.alertSuccess(this.alertAdded + listName));
   }
 
   watchlist(listName: string = "watchlist") {
-    this.action(this.api.getWL(), listName, this.api.wl(this.movieId), this.alertSuccess(this.alertAdded + listName));
+    this.action(this.api.getWL(1), listName, this.api.wl(this.movieId), this.alertSuccess(this.alertAdded + listName));
   }
 
   private action(apiLinkGetData: Observable<any>, listName: string, apiLink: Observable<any>, alert: any) {

@@ -4,7 +4,8 @@
         <div class="row">
             <ng-container *ngIf="(movies | keyvalue)?.length">
                 <h2>{{title}}</h2>
-                <div class="col-lg-2 mb-3 d-flex" style=" margin-bottom:10px;" *ngFor="let movie of movies">
+                <div class="col-lg-2 mb-3 d-flex" style=" margin-bottom:10px;" *ngFor="let movie of movies | paginate
+                : {itemsPerPage: tableSize,currentPage: page,totalItems: totalItems};">
                     <div class="card" style="width: 12rem;">
                         <a (click)="goToMovie(movie.id)">
                             <img [src]="movie.poster_path != null ? 'https://image.tmdb.org/t/p/w500/' + movie.poster_path : noimage"
@@ -15,6 +16,7 @@
                         </a>
                     </div>
                 </div>
+                <pagination-controls *ngIf="!paginationOff" (pageChange)="onTableDataChange($event)"></pagination-controls>
             </ng-container>
         </div>
     </div>

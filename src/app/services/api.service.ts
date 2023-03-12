@@ -16,8 +16,8 @@ export class ApiService {
    * DB MOVIES REQUEST
    * 
    *********************************************************************/
-  public getUpComings(): Observable<any> {
-    return this.http.get<any>(environment.host + 'movie/upcoming?' + 'api_key=' + environment.apiKey);
+  public getUpComings(page: number) {
+    return this.http.get<any>(environment.host + 'movie/upcoming?' + 'api_key=' + environment.apiKey + '&page=' + page);
   }
 
   public getMoviesBySearch(search: string) {
@@ -88,12 +88,12 @@ export class ApiService {
     });
   }
 
-  public getFavs() {
-    return this.http.get<any>(environment.host + 'account/' + this.getAccountId() + '/favorite/movies?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId());
+  public getFavs(page: number) {
+    return this.http.get<any>(environment.host + 'account/' + this.getAccountId() + '/favorite/movies?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId() + '&page=' + page);
   }
 
-  public getWL() {
-    return this.http.get<any>(environment.host + 'account/' + this.getAccountId() + '/watchlist/movies?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId());
+  public getWL(page: number) {
+    return this.http.get<any>(environment.host + 'account/' + this.getAccountId() + '/watchlist/movies?api_key=' + environment.apiKey + '&session_id=' + this.getSessionId() + '&page=' + page);
   }
 
   public wl(media_id: number) {
